@@ -75,6 +75,9 @@ export default function WishlistContent() {
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
+      if (!lastPage) {
+        return undefined; // lastPage가 없으면 undefined를 반환
+      }
       return lastPage.isNext !== -1 ? lastPage.page + 1 : undefined;
     },
     select: (data) => data.pages.flatMap((ele) => ele.data || []),

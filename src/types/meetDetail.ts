@@ -23,7 +23,8 @@ export interface MeetProps {
     | "GWANGJU"
     | "BUSAN"
     | "DAEGU"
-    | "GANGNEUNG";
+    | "GANGNEUNG"
+    | null;
   title: string;
   content: string;
   maxParticipants: number;

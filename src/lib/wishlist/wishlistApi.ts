@@ -124,8 +124,7 @@ export const fetchUserWishlistType2 = async ({
     return {
       data: filteredList.slice(startIndex, endIndex),
       page: pageParams,
-      isNext:
-        filteredList.length - (startIndex + 1) * filter.limit > 0 ? 1 : -1,
+      isNext: filteredList.length > endIndex ? 1 : -1,
     };
   } catch (error) {
     throw error;
@@ -265,8 +264,7 @@ export const fetchLocalWishlist = async ({
     return {
       data: filteredList.slice(startIndex, endIndex),
       page: pageParams,
-      isNext:
-        filteredList.length - (startIndex + 1) * filter.limit > 0 ? 1 : -1,
+      isNext: filteredList.length > endIndex ? 1 : -1,
     };
   } catch (error) {
     throw error;
