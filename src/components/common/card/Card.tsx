@@ -2,6 +2,7 @@
 
 import dynamicImport from "next/dynamic";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 import CardWishlist from "./CardWishlist";
 import Content from "./Content";
 import StatusBadge from "./StatusBadge";
@@ -14,10 +15,13 @@ const CardReview = dynamicImport(
 const Card = ({ card }: CardInfo) => {
   const router = useRouter();
 
-  const handleClickDetail = (type: string, id: number): void => {
-    const lowerCase = type.toLowerCase();
-    router.push(`/${lowerCase}/${id}`);
-  };
+  const handleClickDetail = useCallback(
+    (type: string, id: number): void => {
+      const lowerCase = type.toLowerCase();
+      router.push(`/${lowerCase}/${id}`);
+    },
+    [card],
+  );
 
   return (
     <div

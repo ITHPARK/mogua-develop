@@ -33,9 +33,9 @@ export default function Content({ content }: CardContentProps) {
   return (
     <div className='mt-5 flex justify-between'>
       <div className='flex-col'>
-        <span className='mb-1.5 block text-body-1-normal font-medium text-gray-200'>
+        <h3 className='mb-1.5 block text-body-1-normal font-medium text-gray-200'>
           {content.title}
-        </span>
+        </h3>
         <div className='mb-6 flex'>
           <span
             className={`caption-stroke relative inline-block pr-2 text-label-reading font-regular text-gray-400`}
@@ -74,13 +74,12 @@ export default function Content({ content }: CardContentProps) {
       </div>
       <div className='flex flex-col justify-end'>
         <Image
-          className='size-20 rounded-lg object-cover'
+          className='rounded-lg object-cover'
           src={content.thumbnail || ""}
           width={80}
           height={80}
           alt='모임 이미지'
-          priority
-          loading='eager'
+          loading='lazy'
           quality={75}
           sizes='80px'
         />

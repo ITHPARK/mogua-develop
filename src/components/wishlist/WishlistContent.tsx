@@ -58,18 +58,10 @@ export default function WishlistContent() {
     ],
     queryFn: ({ pageParam }) => {
       if (user != null) {
-        // const filterString = Object.entries(filter).reduce<
-        //   Record<string, string>
-        // >((acc, [key, value]) => {
-        //   acc[key] = String(value);
-        //   return acc;
-        // }, {});
-
         return fetchUserWishlistType2({
           pageParams: pageParam,
           userId: user.userId,
           filter: wishlistParams,
-          // filter: new URLSearchParams(filterString).toString(),
         });
       } else {
         return fetchLocalWishlist({
@@ -94,67 +86,42 @@ export default function WishlistContent() {
     }
   }, [fetchNextPage, isPageEnd, hasNextPage]);
 
-  if (isLoading) {
+  if (isLoading || isError) {
     return (
       <div className='w-full'>
         <section className='relative grid w-full grow grid-cols-1 gap-y-6 desktop:grid-cols-2 desktop:gap-x-8 desktop:gap-y-10'>
-          {Array.from({ length: 8 }).map((_, index) => {
-            return <CardSkeleton key={index} />;
-          })}
+          {Array.from({ length: 8 }).map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
         </section>
+        {isError && (
+          <section className='relative size-full grow'>
+            <div className='flex h-[50vh] flex-col items-center justify-center gap-4'>
+              <EmptyImage />
+              <p className='text-center text-body-1-reading text-gray-500'>
+                찜한 모임을 불러오지 못했어요
+              </p>
+              <div className='flex flex-col items-center gap-8'>
+                <SolidButton
+                  size='small'
+                  onClick={() => refetch()}
+                  aria-label='refetch wishlist'
+                >
+                  다시 시도하기
+                </SolidButton>
+              </div>
+            </div>
+          </section>
+        )}
       </div>
     );
   }
-
-  if (isError) {
-    return (
-      <section className='relative size-full grow'>
-        <div className='flex h-[50vh] flex-col items-center justify-center gap-4'>
-          <EmptyImage />
-          <p className='text-center text-body-1-reading text-gray-500'>
-            찜한 모임을 불러오지 못했어요
-          </p>
-          <div className='flex flex-col items-center gap-8'>
-            <SolidButton
-              size='small'
-              onClick={() => {
-                refetch();
-              }}
-              aria-label='refetch wishlist'
-            >
-              다시 시도하기
-            </SolidButton>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <div className='w-full'>
       {wishlist != null && wishlist.length > 0 && (
         <section className='relative grid w-full grow grid-cols-1 gap-y-6 desktop:grid-cols-2 desktop:gap-x-8 desktop:gap-y-10'>
           {wishlist?.map((meet: CardProps, index: number) => {
-            return (
-              <Card
-                key={index}
-                card={{
-                  meetupId: meet.meetupId,
-                  meetingType: meet.meetingType,
-                  meetupStatus: meet.meetupStatus,
-                  location: meet.location,
-                  title: meet.title,
-                  minParticipants: 20,
-                  recruitmentStartDate: new Date(meet.recruitmentStartDate),
-                  recruitmentEndDate: new Date(meet.recruitmentEndDate),
-                  meetingStartDate: new Date(meet.meetingStartDate),
-                  meetingEndDate: new Date(meet.meetingEndDate),
-                  thumbnail: meet.thumbnail,
-                  isOnline: meet.isOnline,
-                  participants: meet.participants,
-                }}
-              />
-            );
+            return <Card key={index} card={meet} />;
           })}
         </section>
       )}
