@@ -35,7 +35,7 @@ describe("Card 컴포넌트 테스트", () => {
     meetingEndDate: new Date("2024-03-01"),
     thumbnail: "/test-image.jpg",
     minParticipants: 5,
-    online: false,
+    isOnline: false,
     isMypage: false,
     isReview: false,
   };
@@ -130,6 +130,7 @@ describe("Card 컴포넌트 테스트", () => {
           recruitmentEndDate: new Date("25-02-10"),
           meetingStartDate: new Date("25-02-28"),
           meetingEndDate: new Date("25-03-10"),
+          isOnline: false,
         },
       };
 
