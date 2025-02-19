@@ -25,7 +25,7 @@ const Card = ({ card }: CardInfo) => {
       onClick={() => handleClickDetail(card.meetingType, card.meetupId)}
       aria-label={`모임${card.meetupId} 이동`}
     >
-      <div className='flex justify-between'>
+      <div className='flex justify-between' aria-label={`모임 컨텐츠`}>
         <div className='flex gap-1.5'>
           <StatusBadge
             badge={{

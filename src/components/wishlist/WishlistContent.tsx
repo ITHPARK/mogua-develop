@@ -92,6 +92,8 @@ export default function WishlistContent() {
     }
   }, [fetchNextPage, isPageEnd, hasNextPage]);
 
+  console.log(wishlist);
+
   return (
     <div className='w-full'>
       {wishlist != null && wishlist.length > 0 && (

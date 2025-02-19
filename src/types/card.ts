@@ -14,7 +14,8 @@ export interface CardProps {
     | "GWANGJU"
     | "BUSAN"
     | "DAEGU"
-    | "GANGNEUNG";
+    | "GANGNEUNG"
+    | null;
   title: string;
   minParticipants: number;
   recruitmentStartDate: Date;
