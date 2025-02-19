@@ -62,7 +62,6 @@ const mockData = {
   isNext: -1,
 };
 
-// Mock modules
 jest.mock("next/navigation", () => ({
   useSearchParams: jest.fn(),
   useRouter: jest.fn(),
