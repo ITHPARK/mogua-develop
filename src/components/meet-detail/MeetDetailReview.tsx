@@ -42,7 +42,7 @@ export default function MeetDetailReview({
   const reviewCount = reviewData?.length ?? 0;
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2' aria-label={"review section"}>
       <div className='flex min-h-[318px] flex-col'>
         <h3 className='text-title mb-4'>
           리뷰 <span className='text-title text-blue-300'>{reviewCount}</span>
@@ -84,7 +84,7 @@ export default function MeetDetailReview({
               </div>
             ))}
           {isFetching && (
-            <div className='flex justify-center'>
+            <div className='flex justify-center' aria-label='loadingSpiner'>
               <DotLoader size={24} color={"#FF9A42"} loading={isFetching} />
             </div>
           )}

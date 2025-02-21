@@ -58,11 +58,7 @@ export default function MeetButtonArea({
   }, [user, clientInfo.meetupId]);
 
   const handleClickLeave = useCallback(() => {
-    if (user === null) {
-      router.push("/sign-in");
-    } else {
-      leaveMutate.mutate(clientInfo.meetupId);
-    }
+    leaveMutate.mutate(clientInfo.meetupId);
   }, [user, clientInfo.meetupId]);
 
   const handleClickDeleteMeetup = useCallback(() => {

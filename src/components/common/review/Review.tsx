@@ -51,6 +51,7 @@ export default function Review({ reviewInfo }: ReviewInfoProps) {
     <div
       className={`rounded-[12px] bg-gray-900 p-4 ${isMyWrittenStyle}`}
       onClick={reviewInfo.isMyWritten ? handleClickReview : undefined}
+      aria-label='review box'
     >
       <div className='relative'>
         <div className='flex justify-between'>
